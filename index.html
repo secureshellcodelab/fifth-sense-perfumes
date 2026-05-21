@@ -1,419 +1,563 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fifth Sense Parfumes | Luxury Niche & Long-Lasting Fragrances</title>
-    <meta name="description" content="Discover Fifth Sense Parfumes. Handcrafted, small-batch niche fragrances with exceptional longevity. Sourced from Grasse. Book a consultation today.">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Premium Perfumes & Custom Fragrances | Fifth Sense Parfumes</title>
+    <meta name="description" content="Discover your signature scent at Fifth Sense Parfumes. Rated 4.9/5 by 123+ customers. Shop premium, long-lasting perfumes, pure ouds, and luxury gifts.">
+    
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
+        /* CSS Variables - Premium Dark Theme */
         :root {
-            --emerald: #064e3b;
-            --gold: #d4af37;
-            --alabaster: #f8f8f8;
-        }
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--alabaster);
-            color: #1a1a1a;
-        }
-        h1, h2, h3, .serif {
-            font-family: 'Cormorant+Garamond', serif;
-        }
-        .bg-emerald-deep { background-color: var(--emerald); }
-        .text-gold { color: var(--gold); }
-        .border-gold { border-color: var(--gold); }
-        
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 400px;
+            --bg-color: #050505;
+            --surface-color: #121212;
+            --surface-hover: #1e1e1e;
+            --gold-primary: #D4AF37;
+            --gold-hover: #b5952f;
+            --text-main: #f5f5f5;
+            --text-muted: #a3a3a3;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid var(--gold-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--gold-primary);
+            color: var(--bg-color);
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--gold-hover);
+            border-color: var(--gold-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--gold-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Header / Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(5, 5, 5, 0.95);
             backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--gold-primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 30px;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 0.9)), url('https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=2000&auto=format&fit=crop') center/cover;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .trust-badges {
+            margin-top: 50px;
+            display: flex;
+            gap: 20px;
+            color: var(--gold-primary);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background-color: var(--surface-color);
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .trust-grid {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .trust-item h3 {
+            color: var(--gold-primary);
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        /* Collections / Services */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--surface-color);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        /* Reviews */
+        .review-card {
+            background-color: var(--bg-color);
+            padding: 30px;
             border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        .quiz-step { display: none; }
-        .quiz-step.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .stars {
+            color: var(--gold-primary);
+            margin-bottom: 15px;
         }
-        .animate-fade { animation: fadeIn 0.8s ease-out forwards; }
-    </style>
-</head>
-<body class="overflow-x-hidden">
 
-<!-- Chosen Palette: Emerald & Champagne Gold (Luxury Minimalist) -->
-<!-- Application Structure Plan: 
-    1. Immersive Hero: Establishing 'Invisible Luxury' and immediate CTAs.
-    2. The Science of Longevity: Interactive Chart.js visualization comparing scent concentrations to handle the 'New Brand' trust hurdle through data.
-    3. Interactive Scent Finder: A lead-generation quiz that simplifies the choice for new users.
-    4. Product Showcases: Highlighting the Discovery Set as a low-friction entry point.
-    5. Brand Narrative: A sophisticated 'About' section focusing on the Grasse heritage.
-    6. Functional FAQ: Addressing technical longevity and skin safety.
-    Chosen to prioritize educational value (teaching why the perfume lasts) and interactive engagement (the quiz) to replace traditional social proof reviews. 
--->
-<!-- Visualization & Content Choices: 
-    - Longevity Comparison -> Chart.js Horizontal Bar -> Explains 'Extrait de Parfum' vs others -> Educational authority -> Chart.js.
-    - Scent Profile Selection -> Dynamic JS Logic -> Interactive Quiz -> Reduces cognitive load for users -> Vanilla JS.
-    - Ingredient Origin -> Grid Layout with Hover Effects -> Tailwind CSS -> Transparency build trust.
-    - NO SVG/Mermaid used.
--->
-<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+        /* FAQ Section */
+        details {
+            background-color: var(--surface-color);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-left: 2px solid var(--gold-primary);
+            cursor: pointer;
+        }
 
-<!-- Navigation -->
-<nav class="fixed w-full z-50 bg-emerald-deep/95 text-white py-4 px-6 flex justify-between items-center border-b border-gold/20">
-    <div class="text-2xl font-bold tracking-widest serif">FIFTH SENSE</div>
-    <div class="hidden md:flex space-x-8 text-xs uppercase tracking-widest">
-        <a href="#collection" class="hover:text-gold transition">Collection</a>
-        <a href="#why" class="hover:text-gold transition">The Quality</a>
-        <a href="#quiz" class="hover:text-gold transition">Scent Finder</a>
-        <a href="#about" class="hover:text-gold transition">Our Story</a>
-    </div>
-    <a href="https://wa.me/#" class="bg-gold text-emerald-deep px-5 py-2 text-xs font-bold uppercase tracking-tighter hover:bg-white transition">Consultation</a>
-</nav>
+        summary {
+            font-weight: 500;
+            font-size: 1.1rem;
+            outline: none;
+            list-style: none; /* Hide default arrow */
+            display: flex;
+            justify-content: space-between;
+        }
 
-<!-- Hero Section -->
-<section class="relative min-h-screen flex items-center justify-center text-center px-6 pt-20 bg-emerald-deep text-white overflow-hidden">
-    <div class="absolute inset-0 opacity-20 pointer-events-none">
-        <div class="absolute top-[-10%] right-[-10%] w-96 h-96 rounded-full bg-gold blur-[120px]"></div>
-        <div class="absolute bottom-[-10%] left-[-10%] w-96 h-96 rounded-full bg-gold blur-[120px]"></div>
-    </div>
-    
-    <div class="max-w-4xl z-10 animate-fade">
-        <span class="text-gold uppercase tracking-[0.3em] text-sm mb-4 block">The Invisible Luxury You Wear</span>
-        <h1 class="text-5xl md:text-7xl serif mb-6 italic">Your Presence, Crystallized.</h1>
-        <p class="text-lg md:text-xl font-light mb-10 text-gray-300 max-w-2xl mx-auto">
-            Discover artisanal, small-batch perfumes crafted for extreme longevity. From rare botanicals to your skin—experience the power of a true signature scent.
-        </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#collection" class="bg-gold text-emerald-deep px-10 py-4 font-bold uppercase tracking-widest hover:bg-white transition">Explore the Collection</a>
-            <a href="https://wa.me/#" class="border border-gold text-gold px-10 py-4 font-bold uppercase tracking-widest hover:bg-emerald-800 transition">WhatsApp Consultation</a>
-        </div>
-        
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-white/10 pt-10">
-            <div class="text-sm tracking-widest uppercase text-gray-400">✧ 12-Hour Longevity Guaranteed</div>
-            <div class="text-sm tracking-widest uppercase text-gray-400">✧ 0% Synthetic Fillers</div>
-            <div class="text-sm tracking-widest uppercase text-gray-400">✧ Grasse-Sourced Ingredients</div>
-        </div>
-    </div>
-</section>
+        summary::-webkit-details-marker {
+            display: none;
+        }
 
-<!-- Data Viz: Why We Are Different -->
-<section id="why" class="py-24 px-6 bg-white">
-    <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl serif mb-4 italic">The Science of Scent Projection</h2>
-            <p class="text-gray-600 max-w-xl mx-auto">Most mass-market fragrances fade because they use lower oil concentrations. We prioritize the 'Extrait' standard, ensuring your fragrance stays with you all day.</p>
-        </div>
+        summary::after {
+            content: '+';
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+        }
 
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div class="chart-container">
-                <canvas id="longevityChart"></canvas>
-            </div>
-            <div class="space-y-6">
-                <div class="p-6 border-l-4 border-gold bg-alabaster">
-                    <h3 class="text-xl font-bold mb-2">Concentrated Integrity</h3>
-                    <p class="text-sm text-gray-600">Our formulas contain 25-35% pure fragrance oils, significantly higher than standard retail brands. This isn't just about smell; it's about endurance.</p>
-                </div>
-                <div class="p-6 border-l-4 border-emerald-deep bg-alabaster">
-                    <h3 class="text-xl font-bold mb-2">The 'Grasse' Standard</h3>
-                    <p class="text-sm text-gray-600">Sourced from the perfume capital of the world, France, our essential oils maintain the volatile nuances of rare botanicals lost in mass production.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        details[open] summary::after {
+            content: '-';
+        }
 
-<!-- Interactive Scent Finder Quiz -->
-<section id="quiz" class="py-24 px-6 bg-emerald-deep text-white">
-    <div class="max-w-3xl mx-auto glass-card p-10 rounded-sm text-emerald-deep">
-        <div id="quiz-container">
-            <div id="step-1" class="quiz-step active">
-                <h2 class="text-3xl serif mb-6 italic text-center">Find Your Olfactory Identity</h2>
-                <p class="text-center mb-8 text-gray-600">Choose the environment where you feel most powerful:</p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <button onclick="nextStep(2, 'Fresh')" class="p-6 border border-gold/30 hover:bg-gold hover:text-white transition text-left">
-                        <span class="block font-bold">Nature & Light</span>
-                        <span class="text-xs opacity-70">Dewy mornings, citrus groves, crisp air.</span>
-                    </button>
-                    <button onclick="nextStep(2, 'Deep')" class="p-6 border border-gold/30 hover:bg-gold hover:text-white transition text-left">
-                        <span class="block font-bold">Midnight & Mystery</span>
-                        <span class="text-xs opacity-70">Velvet rooms, smoked wood, aged resin.</span>
-                    </button>
-                </div>
-            </div>
+        details p {
+            margin-top: 15px;
+            color: var(--text-muted);
+        }
 
-            <div id="step-2" class="quiz-step">
-                <h2 class="text-3xl serif mb-6 italic text-center">Your Desired Impression?</h2>
-                <div class="grid grid-cols-1 gap-4">
-                    <button onclick="nextStep(3, 'Approachable')" class="p-4 border border-gold/30 hover:bg-gold hover:text-white transition">Clean, Elegant, & Approachable</button>
-                    <button onclick="nextStep(3, 'Commanding')" class="p-4 border border-gold/30 hover:bg-gold hover:text-white transition">Bold, Sophisticated, & Commanding</button>
-                </div>
-            </div>
+        /* Footer */
+        footer {
+            background-color: var(--surface-color);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+        }
 
-            <div id="step-3" class="quiz-step text-center">
-                <h3 class="text-2xl serif mb-4 italic">We've found your match.</h3>
-                <p id="result-text" class="mb-8 font-light text-gray-700 italic">"The Velvet Oud Extrait"</p>
-                <div class="bg-emerald-deep text-white p-6 mb-6">
-                    <p class="text-sm mb-4">Start with our Discovery Set and get the full price credited toward your first full bottle.</p>
-                    <a href="https://wa.me/#" class="inline-block bg-gold text-emerald-deep px-8 py-3 font-bold uppercase tracking-widest">Claim My Scent Guide</a>
-                </div>
-                <button onclick="resetQuiz()" class="text-xs uppercase tracking-widest underline opacity-50">Retake Quiz</button>
-            </div>
-        </div>
-    </div>
-</section>
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 20px;
+        }
 
-<!-- Collection / Discovery Set -->
-<section id="collection" class="py-24 px-6 bg-alabaster">
-    <div class="max-w-6xl mx-auto text-center">
-        <h2 class="text-4xl serif mb-12 italic">The Entry Point to Luxury</h2>
-        
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Product Card -->
-            <div class="bg-white p-2 border border-gray-100 shadow-sm group">
-                <div class="bg-gray-100 h-80 flex items-center justify-center text-gray-300 relative overflow-hidden">
-                    <span class="text-8xl serif opacity-20 group-hover:scale-110 transition duration-500">V</span>
-                    <div class="absolute bottom-0 left-0 right-0 bg-emerald-deep text-gold text-xs py-2 uppercase tracking-tighter">Small Batch: 50 Bottles Only</div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-lg font-bold mb-1">Discovery Set (5x 2ml)</h3>
-                    <p class="text-sm text-gray-500 mb-4">The complete Fifth Sense library in trial size.</p>
-                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
-                        <span class="text-gold font-bold">₹1,499</span>
-                        <a href="https://wa.me/#" class="text-xs uppercase font-bold tracking-widest border-b border-emerald-deep pb-1 hover:text-gold hover:border-gold">Inquire Now</a>
-                    </div>
-                </div>
-            </div>
+        .footer-text {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
 
-            <!-- Value Prop Card -->
-            <div class="md:col-span-2 flex flex-col justify-center bg-emerald-deep text-white p-12 text-left relative">
-                <div class="absolute top-0 right-0 p-8 opacity-10 text-8xl serif italic">5</div>
-                <h3 class="text-3xl serif mb-4 italic text-gold">The "Try Before You Buy" Promise</h3>
-                <p class="mb-8 font-light leading-relaxed">
-                    We understand that scent is personal. Purchase our Discovery Set today, and we will provide a unique voucher for the full amount to be deducted from your first 50ml or 100ml purchase. 
-                    <br><br>
-                    <strong>Risk-free exploration. Pure olfactory discovery.</strong>
-                </p>
-                <a href="https://wa.me/#" class="inline-block bg-white text-emerald-deep px-10 py-4 font-bold uppercase tracking-widest self-start hover:bg-gold hover:text-white transition">Shop Discovery Set</a>
-            </div>
-        </div>
-    </div>
-</section>
+        .copyright {
+            margin-top: 50px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
 
-<!-- About Section -->
-<section id="about" class="py-24 px-6 bg-white overflow-hidden">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
-        <div class="w-full md:w-1/2">
-            <div class="relative">
-                <div class="w-full h-96 bg-gray-100 flex items-center justify-center text-gray-300 border border-gold/10">
-                    <span class="text-4xl serif italic">Grasse Heritage</span>
-                </div>
-                <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-emerald-deep/5 -z-10"></div>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <h2 class="text-4xl serif mb-6 italic leading-tight">The Quest for the <br>Perfect Linger.</h2>
-            <p class="text-gray-600 mb-6 leading-relaxed">
-                Fifth Sense Parfumes was born from a singular frustration: the fading of mass-market scents within hours. We believe a perfume is a silent biography. 
-            </p>
-            <p class="text-gray-600 mb-8 leading-relaxed">
-                Our founder traveled to Grasse to bring back the "slow-perfumery" method—where ingredients are allowed to mature and oils are kept at their highest potency. We don't just sell bottles; we provide the invisible accessory that completes your identity.
-            </p>
-            <div class="grid grid-cols-2 gap-8 text-center">
-                <div>
-                    <span class="block text-3xl font-bold text-gold">40+</span>
-                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Rare Extracts</span>
-                </div>
-                <div>
-                    <span class="block text-3xl font-bold text-gold">100%</span>
-                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Cruelty Free</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        /* Floating WhatsApp Button */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
 
-<!-- FAQ -->
-<section class="py-24 px-6 bg-alabaster">
-    <div class="max-w-3xl mx-auto">
-        <h2 class="text-4xl serif mb-12 italic text-center">Curiosities</h2>
-        <div class="space-y-4">
-            <details class="bg-white p-6 border border-gray-100 group">
-                <summary class="list-none flex justify-between items-center cursor-pointer font-bold">
-                    How long will the scent actually last?
-                    <span class="text-gold group-open:rotate-45 transition">+</span>
-                </summary>
-                <p class="mt-4 text-sm text-gray-600">Unlike department store brands, our high-concentration formulations are designed for 8–12 hours of projection depending on your skin type and environment.</p>
-            </details>
-            <details class="bg-white p-6 border border-gray-100 group">
-                <summary class="list-none flex justify-between items-center cursor-pointer font-bold">
-                    I’m not sure what I like. How do I choose?
-                    <span class="text-gold group-open:rotate-45 transition">+</span>
-                </summary>
-                <p class="mt-4 text-sm text-gray-600">We highly recommend starting with our Discovery Set or chatting with us on WhatsApp for a personalized recommendation based on your current favorites.</p>
-            </details>
-            <details class="bg-white p-6 border border-gray-100 group">
-                <summary class="list-none flex justify-between items-center cursor-pointer font-bold">
-                    Are your ingredients safe for sensitive skin?
-                    <span class="text-gold group-open:rotate-45 transition">+</span>
-                </summary>
-                <p class="mt-4 text-sm text-gray-600">Yes. We use premium, naturally derived oils and follow strict IFRA safety guidelines to minimize irritation. We recommend a patch test for all new scents.</p>
-            </details>
-        </div>
-    </div>
-</section>
+        .floating-wa:hover {
+            transform: scale(1.1);
+        }
 
-<!-- Footer -->
-<footer class="bg-emerald-deep text-white py-20 px-6 border-t border-gold/20">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div class="md:col-span-2">
-            <div class="text-3xl font-bold tracking-widest serif mb-6">FIFTH SENSE</div>
-            <p class="text-gray-400 max-w-sm text-sm mb-6">Elevate your presence with artisanal scents that linger. Handcrafted in small batches for the discerning individual.</p>
-            <div class="flex space-x-4">
-                <a href="#" class="text-gold hover:text-white transition text-xs tracking-widest">INSTAGRAM</a>
-                <a href="#" class="text-gold hover:text-white transition text-xs tracking-widest">WHATSAPP</a>
-            </div>
-        </div>
-        <div>
-            <h4 class="text-xs font-bold uppercase tracking-widest text-gold mb-6">Explore</h4>
-            <ul class="text-sm space-y-4 text-gray-400">
-                <li><a href="#" class="hover:text-white transition">Full Collection</a></li>
-                <li><a href="#" class="hover:text-white transition">Discovery Set</a></li>
-                <li><a href="#" class="hover:text-white transition">Consultation</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4 class="text-xs font-bold uppercase tracking-widest text-gold mb-6">Company</h4>
-            <ul class="text-sm space-y-4 text-gray-400">
-                <li><a href="#" class="hover:text-white transition">Our Story</a></li>
-                <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
-                <li><a href="#" class="hover:text-white transition">Sustainablity</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="max-w-6xl mx-auto mt-20 pt-10 border-t border-white/5 text-[10px] text-gray-500 flex flex-col md:flex-row justify-between">
-        <p>&copy; 2026 FIFTH SENSE PARFUMES. ALL RIGHTS RESERVED.</p>
-        <p class="mt-2 md:mt-0 tracking-widest">CRAFTED FOR LONGEVITY.</p>
-    </div>
-</footer>
-
-<!-- Floating WhatsApp -->
-<a href="https://wa.me/#" class="fixed bottom-8 right-8 bg-white border border-gold/30 p-4 rounded-full shadow-2xl z-50 hover:scale-110 transition group">
-    <div class="flex items-center space-x-2">
-        <div class="w-12 h-12 flex items-center justify-center text-emerald-deep font-bold text-2xl">☏</div>
-        <div class="hidden group-hover:block pr-4">
-            <span class="block text-[10px] text-gray-400 leading-none">Consult An Expert</span>
-            <span class="block text-sm font-bold text-emerald-deep">WhatsApp</span>
-        </div>
-    </div>
-</a>
-
-<script>
-    // Longevity Chart Initialization
-    const ctx = document.getElementById('longevityChart').getContext('2d');
-    const longevityChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Eau de Cologne', 'Eau de Toilette', 'Eau de Parfum', 'Fifth Sense Extrait'],
-            datasets: [{
-                label: 'Longevity (Hours)',
-                data: [2, 4, 6, 12],
-                backgroundColor: [
-                    'rgba(6, 78, 59, 0.1)',
-                    'rgba(6, 78, 59, 0.3)',
-                    'rgba(6, 78, 59, 0.6)',
-                    '#d4af37'
-                ],
-                borderWidth: 0,
-                borderRadius: 4
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return ` ${context.parsed.x} Hours Average Wear`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    max: 14,
-                    grid: { display: false },
-                    ticks: { font: { size: 10 } }
-                },
-                y: {
-                    grid: { display: false },
-                    ticks: { 
-                        font: { 
-                            size: 11,
-                            family: 'Montserrat'
-                        },
-                        color: '#1a1a1a'
-                    }
-                }
+        /* Responsive Media Queries */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
-    });
+    </style>
+</head>
+<body>
 
-    // Quiz Logic
-    let quizData = {
-        environment: '',
-        impression: ''
-    };
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">Fifth Sense</a>
+            <nav class="nav-links">
+                <a href="#collections">Collections</a>
+                <a href="#why-us">Why Us</a>
+                <a href="#about">Our Story</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <a href="#contact" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">Order Now</a>
+        </div>
+    </header>
 
-    function nextStep(step, val) {
-        if (step === 2) quizData.environment = val;
-        if (step === 3) {
-            quizData.impression = val;
-            generateResult();
-        }
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Wear Your Confidence.<br>Find Your Signature Scent.</h1>
+            <p>Experience meticulously crafted, long-lasting fragrances designed to leave an unforgettable impression. Join over 120+ discerning clients who rate us 4.9 stars.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/YOUR_NUMBER" class="btn btn-primary">Speak to an Expert (WhatsApp)</a>
+                <a href="#collections" class="btn btn-secondary">Explore Collection</a>
+            </div>
+            <div class="trust-badges">
+                <span>★ 4.9/5 Google Rated</span>
+                <span>• 100% Authentic Notes</span>
+                <span>• Exceptional Sillage</span>
+            </div>
+        </div>
+    </section>
 
-        document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-        document.getElementById(`step-${step}`).classList.add('active');
-    }
+    <!-- Trust Counters -->
+    <section class="trust-bar">
+        <div class="container trust-grid">
+            <div class="trust-item">
+                <h3>4.9/5</h3>
+                <p>Google Rating</p>
+            </div>
+            <div class="trust-item">
+                <h3>123+</h3>
+                <p>Verified Reviews</p>
+            </div>
+            <div class="trust-item">
+                <h3>24hr</h3>
+                <p>Sillage & Longevity</p>
+            </div>
+        </div>
+    </section>
 
-    function generateResult() {
-        const text = document.getElementById('result-text');
-        if (quizData.environment === 'Fresh' && quizData.impression === 'Approachable') {
-            text.innerText = "The Citrus Nomad — Zesty, Crisp, & Effortlessly Elegant.";
-        } else if (quizData.environment === 'Fresh' && quizData.impression === 'Commanding') {
-            text.innerText = "The Marine Sovereign — Powerful Oceans & Crushed Mint.";
-        } else if (quizData.environment === 'Deep' && quizData.impression === 'Approachable') {
-            text.innerText = "The Sandalwood Poet — Creamy, Warm, & Intimate.";
-        } else {
-            text.innerText = "The Velvet Oud — Smoky, Rare, & Unforgettable.";
-        }
-    }
+    <!-- Services / Collections -->
+    <section class="section" id="collections">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Collections</h2>
+                <p style="color: var(--text-muted);">Masterfully blended for undeniable presence.</p>
+            </div>
+            <div class="grid-4">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-icon">✧</div>
+                    <h3>Signature Perfumes</h3>
+                    <p>Curated, premium blends ranging from fresh aquatics to deep, mysterious woods. Commands the room from morning to evening.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-icon">⚗</div>
+                    <h3>Pure Attars & Ouds</h3>
+                    <p>Rich, alcohol-free traditional oils. A culturally rich, potent fragrance experience that lingers on the skin for 24+ hours.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-icon">◈</div>
+                    <h3>Bespoke Matching</h3>
+                    <p>One-on-one consultations to pair you with a scent that perfectly matches your skin chemistry. No more blind buying.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="card">
+                    <div class="card-icon">🎁</div>
+                    <h3>Luxury Gifting</h3>
+                    <p>Exquisitely packaged fragrance wardrobes perfect for weddings or corporate gifting. A gift of true prestige.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    function resetQuiz() {
-        document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-        document.getElementById('step-1').classList.add('active');
-    }
-</script>
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>The Unseen Signature.</h2>
+                <p>Scent is tied to our deepest memories. Fifth Sense Parfumes was founded on the belief that a great fragrance is more than just a smell—it’s an invisible accessory.</p>
+                <p>We set out to craft a collection that captures emotion, memory, and undeniable presence. We test every batch. We wear our own creations. If it doesn't turn heads and last through the day, it doesn't get the Fifth Sense label.</p>
+                <a href="#collections" class="btn btn-secondary" style="margin-top: 20px;">Discover the Mastery</a>
+            </div>
+            <div class="about-image" style="background: url('https://images.unsplash.com/photo-1615526675159-e248c3021d3f?q=80&w=1000&auto=format&fit=crop') center/cover; height: 500px; border-radius: 4px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof / Reviews -->
+    <section class="section" id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Community's Verdict</h2>
+                <p style="color: var(--text-muted);">Consistently rated "The Best" across 120+ Google Reviews.</p>
+            </div>
+            <div class="grid-4" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Simply the best. The longevity and quality are unmatched. It outlasts my designer perfumes easily."</p>
+                    <p style="color: var(--gold-primary); margin-top: 15px; font-size: 0.9rem;">- Verified Customer</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Found my new signature scent. The compliments haven't stopped! Highly recommend speaking to their experts."</p>
+                    <p style="color: var(--gold-primary); margin-top: 15px; font-size: 0.9rem;">- Verified Customer</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Premium packaging and the attars are truly pure. You can tell they use top-grade ingredients. 10/10."</p>
+                    <p style="color: var(--gold-primary); margin-top: 15px; font-size: 0.9rem;">- Verified Customer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section about" id="faq">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            
+            <details>
+                <summary>How long do Fifth Sense perfumes last on the skin?</summary>
+                <p>Our fragrances are highly concentrated. Depending on your skin chemistry and the specific notes, expect a strong, beautiful presence for 8 to 12+ hours.</p>
+            </details>
+
+            <details>
+                <summary>I'm not sure what I like. Can you help me choose?</summary>
+                <p>Absolutely. Reach out to us on WhatsApp, and our fragrance experts will recommend the perfect scent based on your current favorites and personality.</p>
+            </details>
+
+            <details>
+                <summary>Are your perfumes authentic and safe for skin?</summary>
+                <p>Yes. We use premium, skin-safe cosmetic-grade oils and ingredients to ensure a pure, irritation-free experience without harsh chemical after-smells.</p>
+            </details>
+
+            <details>
+                <summary>Do you deliver locally?</summary>
+                <p>Yes, we offer secure and fast shipping. Order directly via WhatsApp for personalized service and real-time tracking.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section" id="contact" style="text-align: center; border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
+        <div class="container">
+            <h2 style="font-size: 3rem; color: var(--gold-primary);">Ready to be remembered?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 40px; font-size: 1.2rem;">Limited stock on our Top 3 Bestsellers. Secure yours today.</p>
+            <a href="https://wa.me/YOUR_NUMBER" class="btn btn-primary" style="font-size: 1.2rem; padding: 20px 50px;">Order via WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Fifth Sense Parfumes</div>
+            <p class="footer-text">Masterfully blended fragrances for those who demand the exceptional. Your scent, your legacy. The premier destination for luxury fragrance, proudly rated 4.9/5 on Google.</p>
+            
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; color: var(--gold-primary);">
+                <a href="#collections">Shop Collection</a>
+                <a href="https://maps.app.goo.gl/MtHG9XvsmuJi6nHy7" target="_blank">Google Profile</a>
+                <a href="#faq">FAQs</a>
+            </div>
+
+            <p class="copyright">© 2026 Fifth Sense Parfumes. All Rights Reserved. Privacy Policy | Terms of Service.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp CTA -->
+    <a href="https://wa.me/YOUR_NUMBER" class="floating-wa" target="_blank" aria-label="Chat on WhatsApp">
+        <!-- Simple WhatsApp SVG Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.396.366 2.76 1.056 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+        </svg>
+    </a>
 
 </body>
 </html>
